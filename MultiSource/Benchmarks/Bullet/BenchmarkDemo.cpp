@@ -406,8 +406,8 @@ void	BenchmarkDemo::initPhysics()
 
 void	BenchmarkDemo::createTest1()
 {
-	// 3000
-	int size = 8;
+	// 50
+	int size = 4;
 	const float cubeSize = 1.0f;
 	float spacing = cubeSize;
 	btVector3 pos(0.0f, cubeSize * 2,0.f);
@@ -421,7 +421,7 @@ void	BenchmarkDemo::createTest1()
 	btTransform trans;
 	trans.setIdentity();
 
-	for(int k=0;k<47;k++) {
+	for(int k=0;k<3;k++) {
 		for(int j=0;j<size;j++) {
 			pos[2] = offset + (float)j * (cubeSize * 2.0f + spacing);
 			for(int i=0;i<size;i++) {
