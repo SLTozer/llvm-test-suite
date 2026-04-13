@@ -25,7 +25,7 @@ subject to the following restrictions:
 #endif //USE_GLUT_DEMO_APPLICATION
 
 
-#define NUM_DEMOS 7
+#define NUM_DEMOS 1
 #define NUM_TESTS 100
 
 
@@ -36,16 +36,10 @@ int main(int argc,char** argv)
 	gDisableDeactivation = true;
 
 	BenchmarkDemo1 benchmarkDemo1;
-	BenchmarkDemo2 benchmarkDemo2;
-	BenchmarkDemo3 benchmarkDemo3;
-	BenchmarkDemo4 benchmarkDemo4;
-	BenchmarkDemo5 benchmarkDemo5;
-	BenchmarkDemo6 benchmarkDemo6;
-	BenchmarkDemo7 benchmarkDemo7;
 
-	BenchmarkDemo* demoArray[NUM_DEMOS] = {&benchmarkDemo1,&benchmarkDemo2,&benchmarkDemo3,&benchmarkDemo4,&benchmarkDemo5,&benchmarkDemo6,&benchmarkDemo7};
-	const char* demoNames[NUM_DEMOS] = {"3000 fall", "1000 stack", "136 ragdolls","1000 convex", "prim-trimesh", "convex-trimesh","raytests"};
-	float totalTime[NUM_DEMOS] = {0.f,0.f,0.f,0.f,0.f,0.f,0.f};
+	BenchmarkDemo* demoArray[NUM_DEMOS] = {&benchmarkDemo1};
+	const char* demoNames[NUM_DEMOS] = {"50 fall"};
+	float totalTime[NUM_DEMOS] = {0.f};
 
 #ifdef USE_GLUT_DEMO_APPLICATION
 	benchmarkDemo.getDynamicsWorld()->setDebugDrawer(&gDebugDrawer);

@@ -1,0 +1,67 @@
+---
+!where {function: btDiscreteDynamicsWorld::stepSimulation, for_hit_count: 1}:
+    ? !value/all Locals
+    !where {function: btDiscreteDynamicsWorld::saveKinematicState}:
+        !and {conditions: "i == 1"}: !then continue
+        ? !value/all Locals
+        ? !type/all Locals
+    !where {function: btDiscreteDynamicsWorld::applyGravity}:
+        !and {conditions: "i == 1"}: !then continue
+        ? !value/all Locals
+        !where {function: btRigidBody::applyGravity, for_hit_count: 1}:
+            ? !value/all Locals
+            !where {function: btRigidBody::applyCentralForce}:
+                ? !value/all Locals
+    !where {function: btDiscreteDynamicsWorld::internalSingleStepSimulation}:
+        !where {function: btDiscreteDynamicsWorld::predictUnconstraintMotion}:
+            !and {conditions: "i == 1"}: !then continue
+            !where {function: btRigidBody::integrateVelocities, for_hit_count: 1}:
+                ? !value/all Locals
+            !where {function: btRigidBody::applyDamping, for_hit_count: 1}:
+                ? !value/all Locals
+                !where {function: btVector3::operator*=}:
+                    ? !value/all Locals
+            !where {function: btRigidBody::predictIntegratedTransform, for_hit_count: 1}:
+                !where {function: btTransformUtil::integrateTransform}:
+                    ? !value/all Locals
+                    ? !type/all Locals
+                    !where {function: btQuaternion::normalize}:
+                        ? !value/all Locals
+                        ? !type/all Locals
+        !where {function: btCollisionWorld::performDiscreteCollisionDetection}:
+            !where {function: btCollisionWorld::updateAabbs}:
+                !and {conditions: "i == 1"}: !then continue
+                !where {function: btCollisionWorld::updateSingleAabb, for_hit_count: 1}:
+                    ? !value/all Locals
+                    ? !type/all Locals
+                    !where {function: btStaticPlaneShape::getAabb}:
+                        ? !value/all Locals
+                        !where {function: btVector3::setValue}:
+                            ? !value/all Locals
+                    !where {function: btAxisSweep3Internal<unsigned short>::setAabb}:
+                        ? !value/all Locals
+                        !where {function: btAxisSweep3Internal<unsigned short>::updateHandle}:
+                            ? !value/all Locals
+            !where {function: btCollisionDispatcher::dispatchAllCollisionPairs}:
+                !where {function: btHashedOverlappingPairCache::processAllOverlappingPairs}:
+                    !and {conditions: "i == 1"}: !then continue
+                    !where {function: btCollisionPairCallback::processOverlap, for_hit_count: 1}:
+                        !where {function: btCollisionDispatcher::defaultNearCallback}:
+                            ? !value/all Locals
+                            !where {function: btCollisionDispatcher::findAlgorithm}:
+                                !where {function: btConvexPlaneCollisionAlgorithm::CreateFunc::CreateCollisionAlgorithm}:
+                                    ? !value/all Locals
+                                    !where {function: btConvexPlaneCollisionAlgorithm::btConvexPlaneCollisionAlgorithm}:
+                                        ? !value/all Locals
+                            !where {function: btConvexPlaneCollisionAlgorithm::processCollision}:
+                                ? !value/all Locals
+                                ? !type/all Locals
+                                !where {function: btConvexPlaneCollisionAlgorithm::collideSingleContact, for_hit_count: 1}:
+                                    ? !value/all Locals
+                                !where {function: btPlaneSpace1}:
+                                    ? !value/all Locals
+                                !where {function: btCollisionShape::getAngularMotionDisc}:
+                                    ? !value/all Locals
+                                    !where {function: btCollisionShape::getBoundingSphere}:
+                                        ? !value/all Locals
+...
